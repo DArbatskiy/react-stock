@@ -1,14 +1,12 @@
 import React from 'react';
 
-class Form extends React.Component {
-render() {
+function Form(props) {
   return (
-    <form onSubmit={this.props.stockMethod}>
+    <form onSubmit={props.stockMethod}>
       <input type="text" name="brand" placeholder="brand" />
       <button>Get info</button>
     </form>
   );
-}
 }
 
 export default Form;
