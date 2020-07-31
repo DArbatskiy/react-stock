@@ -16,7 +16,7 @@ function App() {
     {brand:'General Dynamics', symbol:'GD'},
     {brand:'Microsoft', symbol:'MSFT'},
     {brand:'Electronic Arts', symbol:'EA'},
-    {brand:'SBUX', symbol:'Starbucks'},
+    {brand:'Starbucks', symbol:'SBUX'},
     {brand:'Intel', symbol:'INTC'},
     {brand:'Netflix', symbol:'NFLX'},
     {brand:'PepsiCo', symbol:'PEP'},
