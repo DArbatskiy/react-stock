@@ -1,17 +1,8 @@
-import Form from './components/Form';
+import React from 'react';
 import Info from './components/Info';
-import Stock from './components/Stock';
 import Select from './components/Select';
 
-const API_KEY = 'GR5KIC31BMD0ZSAS';
-
 function App() {
-
-  const [symbol, setSymbol] = useState('');
-  const [lastRefreshed, setLastRefreshed] = useState('');
-  const [openPrice,setOpenPrice] = useState('');
-  const [closePrice, setClosePrice] = useState('');
-
   let companies = [
     {brand:'General Dynamics', symbol:'GD'},
     {brand:'Microsoft', symbol:'MSFT'},
@@ -50,41 +41,13 @@ function App() {
     {brand:'Walt Disney', symbol:'DIS'}
   ];
 
-  let brands = [];
-  for (let company in companies) {
-    brands= [...brands, companies[company].brand];
-  }
-
-
-
-
-  async function handleFormSubmit(e) {
-    e.preventDefault();
-    let brand = e.target.elements.brand.value;
-    const api_url = await fetch(`https://www.alphavantage.co/query?function=TIME_SERIES_DAILY&symbol=${brand}&apikey=${API_KEY}`);
-    const data = await api_url.json();
-
-    let lastRefreshed = data["Meta Data"]["3. Last Refreshed"];
-
-    setSymbol(data["Meta Data"]["2. Symbol"]);
-    setLastRefreshed(data["Meta Data"]["3. Last Refreshed"]);
-    setOpenPrice(data["Time Series (Daily)"][`${lastRefreshed}`]["1. open"]);
-    setClosePrice(data["Time Series (Daily)"][`${lastRefreshed}`]["4. close"]);
-  }
-
   return (
     <div>
       <Info />
-      <Form onFormSubmit={handleFormSubmit} />
-      <Stock 
-        symbol = {symbol}
-        lastRefreshed = {lastRefreshed}
-        openPrice = {openPrice}
-        closePrice = {closePrice}
-      />
-      <Select brands = {brands} />
+      <Select companies = {companies} />
     </div>
   );
 }
 
 export default App;
+
